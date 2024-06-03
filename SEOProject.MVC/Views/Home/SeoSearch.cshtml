@@ -1,0 +1,43 @@
+﻿@using SEOProject.MVC.Models
+@model SEOProject.MVC.Models.SeoSearchViewModel
+
+@{
+    ViewData["Title"] = "SEO Search";
+}
+
+<h1>SEO Search</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SeoSearch">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SelectedSearchEngine" class="control-label">Search Engine</label>
+                <select asp-for="SelectedSearchEngine" class="form-control" asp-items="Html.GetEnumSelectList<SearchEngine>()"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SearchText" class="control-label">Search Text</label>
+                <input asp-for="SearchText" class="form-control" />
+                <span asp-validation-for="SearchText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TargetUrl" class="control-label">Target Url</label>
+                <input asp-for="TargetUrl" class="form-control" />
+                <span asp-validation-for="TargetUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group line-break">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </form>
+        <div class="form-group line-break">
+            <label asp-for="SearchResponse" class="control-label">Search Response</label>
+            <input asp-for="SearchResponse" class="form-control" />
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
